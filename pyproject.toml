@@ -8,6 +8,9 @@ authors = ["Aleksandr <lvar-8@ya.ru>"]
 python = "^3.8"
 Django = "^3.2.9"
 Pillow = "^8.4.0"
+djangorestframework = "^3.12.4"
+django-filter = "^21.1"
+drf-yasg = "^1.20.0"
 
 [tool.poetry.dev-dependencies]
 black = "^21.11b1"

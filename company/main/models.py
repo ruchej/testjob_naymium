@@ -53,7 +53,4 @@ class Departmen(models.Model):
         )
 
     def get_count_employee(self):
-        return (
-            self.employee_set.filter(departmen=self.pk).count()
-            or 0
-        )
+        return self.employee_set.filter(departmen=self.pk).count() or 0
