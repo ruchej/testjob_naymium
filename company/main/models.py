@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import Sum, Count
 
 
 class Employee(models.Model):
@@ -41,3 +42,18 @@ class Departmen(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_sum_salary(self):
+        """Вернуть сумму окладов сотрудников данного департамента"""
+        return (
+            self.employee_set.filter(departmen=self.pk).aggregate(Sum("salary"))[
+                "salary__sum"
+            ]
+            or 0
+        )
+
+    def get_count_employee(self):
+        return (
+            self.employee_set.filter(departmen=self.pk).count()
+            or 0
+        )

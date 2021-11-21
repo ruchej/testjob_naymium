@@ -8,41 +8,84 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Departmen',
+            name="Departmen",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=200, verbose_name='Название')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=200, verbose_name="Название")),
             ],
             options={
-                'verbose_name': 'департамент',
-                'verbose_name_plural': 'Департаменты',
+                "verbose_name": "департамент",
+                "verbose_name_plural": "Департаменты",
             },
         ),
         migrations.CreateModel(
-            name='Employee',
+            name="Employee",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('fio', models.CharField(db_index=True, max_length=255, verbose_name='ФИО')),
-                ('photo', models.ImageField(upload_to='img', verbose_name='Фото')),
-                ('position', models.CharField(max_length=100, verbose_name='Должность')),
-                ('salary', models.DecimalField(decimal_places=2, default=0, max_digits=9, verbose_name='Оклад')),
-                ('age', models.PositiveSmallIntegerField(default=0, verbose_name='Возраст')),
-                ('departmen', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='main.departmen', verbose_name='Департамент')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "fio",
+                    models.CharField(db_index=True, max_length=255, verbose_name="ФИО"),
+                ),
+                ("photo", models.ImageField(upload_to="img", verbose_name="Фото")),
+                (
+                    "position",
+                    models.CharField(max_length=100, verbose_name="Должность"),
+                ),
+                (
+                    "salary",
+                    models.DecimalField(
+                        decimal_places=2, default=0, max_digits=9, verbose_name="Оклад"
+                    ),
+                ),
+                (
+                    "age",
+                    models.PositiveSmallIntegerField(default=0, verbose_name="Возраст"),
+                ),
+                (
+                    "departmen",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="main.departmen",
+                        verbose_name="Департамент",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'сотрудник',
-                'verbose_name_plural': 'Сотрудники',
-                'unique_together': {('fio', 'departmen')},
+                "verbose_name": "сотрудник",
+                "verbose_name_plural": "Сотрудники",
+                "unique_together": {("fio", "departmen")},
             },
         ),
         migrations.AddField(
-            model_name='departmen',
-            name='director',
-            field=models.OneToOneField(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='employee', to='main.employee', verbose_name='Директор'),
+            model_name="departmen",
+            name="director",
+            field=models.OneToOneField(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="employee",
+                to="main.employee",
+                verbose_name="Директор",
+            ),
         ),
     ]
