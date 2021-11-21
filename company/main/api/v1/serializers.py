@@ -11,4 +11,4 @@ class EmployeeSerializier(serializers.ModelSerializer):
 class DepartmenSerializer(serializers.ModelSerializer):
     class Meta:
         model = Departmen
-        fields = "__all__"
+        fields = ("id", "name", "director", "get_sum_salary", "get_count_employee")
